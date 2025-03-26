@@ -4,111 +4,469 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureBytes - Cybersecurity Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary: #0056b3;
+            --secondary: #00264d;
+            --accent: #ff6f61;
+            --light: #f4f4f9;
+            --dark: #333;
+            --white: #fff;
+        }
+        
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
         }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
         header {
-            background-color: #0056b3;
-            color: white;
-            padding: 1em 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
+            opacity: 0.1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: var(--secondary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            font-size: 2rem;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 0.5rem auto 0;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .service {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
-        nav {
-            background-color: #004080;
-            color: white;
-            display: flex;
-            justify-content: center;
-            padding: 0.5em 0;
+        
+        .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1em;
+        
+        .service i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
-        nav a:hover {
-            text-decoration: underline;
+        
+        .service h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
-        section {
-            padding: 2em;
+        
+        #contact {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 3rem;
+            margin: 2rem auto;
+            max-width: 800px;
         }
-        .services {
+        
+        .contact-methods {
             display: flex;
             flex-wrap: wrap;
-            gap: 2em;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .service {
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 1em;
-            width: calc(33% - 2em);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .service h3 {
-            margin-top: 0;
-            color: #0056b3;
-        }
-        footer {
-            background-color: #00264d;
-            color: white;
+        
+        .contact-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
             text-align: center;
-            padding: 1em 0;
-            margin-top: 2em;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .contact-card:hover i {
+            color: var(--white);
+        }
+        
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-card a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links a {
+                margin: 0.5rem 0;
+                padding: 1rem;
+                width: 80%;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>SecureBytes</h1>
-        <p>Your Trusted Partner in Cybersecurity for Cloud Services</p>
+        <div class="header-content">
+            <h1>SecureBytes</h1>
+            <p class="tagline">Your Trusted Partner in Cybersecurity for Cloud Services</p>
+        </div>
     </header>
+    
     <nav>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
+        <div class="nav-container">
+            <a href="#" class="logo">SecureBytes</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
     </nav>
+    
     <section id="about">
         <h2>About SecureBytes</h2>
         <p>SecureBytes specializes in providing top-notch cybersecurity services for cloud platforms such as AWS, Azure, and GCP. We focus on examining cloud architecture and performing in-depth security posture reviews to ensure your cloud infrastructure is secure. Our mission is to help you identify security loopholes from an attacker's perspective and remediate them effectively.</p>
     </section>
+    
     <section id="services">
         <h2>Our Services</h2>
         <div class="services">
             <div class="service">
+                <i class="fas fa-cloud"></i>
                 <h3>Cloud Architecture Examination</h3>
                 <p>We analyze your cloud infrastructure to ensure it adheres to the best practices for security and efficiency.</p>
             </div>
             <div class="service">
+                <i class="fas fa-shield-alt"></i>
                 <h3>Security Posture Review</h3>
                 <p>Comprehensive reviews of your security configurations to identify weaknesses and recommend improvements.</p>
             </div>
             <div class="service">
+                <i class="fas fa-check-double"></i>
                 <h3>Security Benchmark Assessments</h3>
                 <p>We perform security assessments based on leading industry benchmarks, including CIS, PCI, GDPR, and HIPAA.</p>
             </div>
             <div class="service">
+                <i class="fas fa-bug"></i>
                 <h3>Threat Simulation</h3>
                 <p>Simulate real-world attacks to uncover vulnerabilities before attackers can exploit them.</p>
             </div>
             <div class="service">
+                <i class="fas fa-tools"></i>
                 <h3>Remediation Assistance</h3>
                 <p>Our team helps you remediate identified vulnerabilities to strengthen your security posture.</p>
             </div>
+            <div class="service">
+                <i class="fas fa-lock"></i>
+                <h3>24/7 Monitoring</h3>
+                <p>Continuous security monitoring to detect and respond to threats in real-time.</p>
+            </div>
         </div>
     </section>
+    
     <section id="contact">
         <h2>Contact Us</h2>
-        <p>Ready to secure your cloud infrastructure? Reach out to us today!</p>
-        <p>Email: <a href="mailto:info@securebytes.com">info@securebytes.com</a></p>
-        <p>Phone: +1-800-SECURE</p>
+        <p style="text-align: center; margin-bottom: 2rem;">Ready to secure your cloud infrastructure? Reach out to us today!</p>
+        
+        <div class="contact-methods">
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email Us</h3>
+                <a href="mailto:securebytes121@gmail.com">securebytes121@gmail.com</a>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Call Us</h3>
+                <a href="tel:+917985145374">+91 7985145374</a>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-comments"></i>
+                <h3>Live Chat</h3>
+                <p>Coming Soon</p>
+            </div>
+        </div>
     </section>
+    
     <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
         <p>&copy; 2025 SecureBytes. All Rights Reserved.</p>
     </footer>
+    
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
