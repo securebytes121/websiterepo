@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBytes Pricing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+        }
+
+        header {
+            background: #00264d;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        h1 { margin: 0; }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 3rem 1rem;
+        }
+
+        .pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #0056b3;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: #ff6f61;
+            margin: 1rem 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 10px 20px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #00264d;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>SecureBytes Service Packages</h1>
+    <p>Choose the right security plan for your cloud</p>
+</header>
+
+<section>
+    <div class="pricing">
+
+        <!-- Package 1 -->
+        <div class="card">
+            <i class="fas fa-search-dollar"></i>
+            <h2>AWS Security Audit</h2>
+            <div class="price">₹4,999</div>
+            <ul>
+                <li>IAM review</li>
+                <li>S3 exposure check</li>
+                <li>Security group audit</li>
+            </ul>
+            <a href="mailto:securebytes121@gmail.com" class="btn">Get Started</a>
+        </div>
+
+        <!-- Package 2 -->
+        <div class="card">
+            <i class="fas fa-user-secret"></i>
+            <h2>Advanced Cloud Pentest</h2>
+            <div class="price">₹14,999</div>
+            <ul>
+                <li>Real attack simulation</li>
+                <li>Privilege escalation</li>
+                <li>Misconfiguration exploitation</li>
+            </ul>
+            <a href="mailto:securebytes121@gmail.com" class="btn">Get Started</a>
+        </div>
+
+        <!-- Package 3 -->
+        <div class="card">
+            <i class="fas fa-chart-line"></i>
+            <h2>Continuous Monitoring</h2>
+            <div class="price">Monthly</div>
+            <ul>
+                <li>Logs & alerts review</li>
+                <li>Threat detection</li>
+                <li>Weekly report</li>
+            </ul>
+            <a href="mailto:securebytes121@gmail.com" class="btn">Contact Us</a>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
